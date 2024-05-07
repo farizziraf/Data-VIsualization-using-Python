@@ -12,7 +12,10 @@ st.write("By Fariz - 21082010156")
 # Scatter Plot with Matplotlib
 st.write("Scatter Plot")
 fig, ax = plt.subplots()
-scatter_plot = ax.plot(data['tip'])
+scatter_plot = ax.scatter(data['day'], data['tip'], c=data['size'], s=data['total_bill'])
+plt.xlabel('Day')
+plt.ylabel('Tip')
+plt.colorbar(scatter_plot, label='Size')
 st.pyplot(fig)
 
 # Bar Chart with Matplotlib
