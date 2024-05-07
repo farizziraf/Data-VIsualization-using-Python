@@ -7,6 +7,7 @@ import plotly.express as px
 # Load the data
 data = pd.read_csv("dataset/tips.csv")
 st.write("Data Visualization using tips.csv Dataset")
+st.write("By Fariz - 21082010156")
 
 # Scatter Plot with Matplotlib
 st.write("Scatter Plot")
