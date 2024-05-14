@@ -65,7 +65,7 @@ df = conn.query('SELECT EnglishPromotionName, StartDate, EndDate, MaxQty from di
 st.table(df)
 
 # Initialize the pyttsx3 engine
-engine = pyttsx3.init()
+engine = pyttsx3.init(driverName='sapi5')
 
 # Function to perform text-to-speech and translation
 def perform_tts_and_translation(text, target_language):
