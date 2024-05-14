@@ -66,13 +66,6 @@ st.table(df)
 
 # Function to perform text-to-speech and translation
 def perform_tts_and_translation(text, target_language):
-    # Text-to-speech for the original text
-    tts_original = gTTS(text=text, lang='en')
-    tts_original.save("original.mp3")
-    st.audio("original.mp3", format="audio/mp3")
-    
-    time.sleep(2)
-    
     # Translation
     st.write("Terjemahan dalam bahasa target:")
     hasil = ts.translate_text(text, to_language=target_language, translator='google')
