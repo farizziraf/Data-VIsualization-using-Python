@@ -11,5 +11,5 @@ openpyxl
 pymysql
 SQLAlchemy
 scipy
-pyttsx3==2.90
+pyttsx3
 translators==5.9.2
