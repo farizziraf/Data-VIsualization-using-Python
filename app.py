@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 import plotly.express as px
+import os
 
 # Load the data
 data = pd.read_csv("dataset/tips.csv")
@@ -46,3 +48,14 @@ st.pyplot(fig)
 st.write("Line Chart with Interaction")
 fig = px.line(data, y='tip')
 st.plotly_chart(fig)
+
+#Connect to kubela.id server
+chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+
+st.bar_chart(chart_data)
+
+conn = st.connection("mydb", type="sql", autocommit=True)
+
+df = conn.query('SELECT EnglishPromotionName, StartDate, EndDate, MaxQty from dimpromotion limit 10;', ttl=600)
+
+st.table(df)
