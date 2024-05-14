@@ -6,7 +6,7 @@ import numpy as np
 import plotly.express as px
 import streamlit as st
 import translators as ts
-import pyttsx3
+from gtts import gTTS
 import time
 import os
 
@@ -64,24 +64,24 @@ df = conn.query('SELECT EnglishPromotionName, StartDate, EndDate, MaxQty from di
 
 st.table(df)
 
-# Initialize the pyttsx3 engine
-engine = pyttsx3.init(driverName='sapi5')
-
 # Function to perform text-to-speech and translation
 def perform_tts_and_translation(text, target_language):
-    # Text-to-speech
-    engine.say(text)
-    engine.runAndWait()
+    # Text-to-speech for the original text
+    tts_original = gTTS(text=text, lang='en')
+    tts_original.save("original.mp3")
+    st.audio("original.mp3", format="audio/mp3")
+    
     time.sleep(2)
     
     # Translation
     st.write("Terjemahan dalam bahasa target:")
-    hasil = ts.translate(text, to_language=target_language, translator='google')
+    hasil = ts.translate_text(text, to_language=target_language, translator='google')
     st.write(hasil)
     
     # Text-to-speech for translated text
-    engine.say(hasil)
-    engine.runAndWait()
+    tts_translated = gTTS(text=hasil, lang=target_language)
+    tts_translated.save("translated.mp3")
+    st.audio("translated.mp3", format="audio/mp3")
 
 # Main Streamlit app
 def main():
